@@ -51,7 +51,7 @@ pub fn check<'tcx>(
             if check_into_iter_call_arg(cx, expr, method_name, receiver, msrv) {
                 return;
             }
-            if check_string_from_utf8(cx, expr, receiver) {
+            if check_string_from_utf8(cx, expr, receiver, msrv) {
                 return;
             }
             check_other_call_arg(cx, expr, method_name, receiver);
@@ -249,7 +249,12 @@ fn check_into_iter_call_arg(
 
 /// Checks for `&String::from_utf8(bytes.{to_vec,to_owned,...}()).unwrap()` coercing to `&str`,
 /// which can be written as just `std::str::from_utf8(bytes).unwrap()`.
-fn check_string_from_utf8<'tcx>(cx: &LateContext<'tcx>, expr: &'tcx Expr<'tcx>, receiver: &'tcx Expr<'tcx>) -> bool {
+fn check_string_from_utf8<'tcx>(
+    cx: &LateContext<'tcx>,
+    expr: &'tcx Expr<'tcx>,
+    receiver: &'tcx Expr<'tcx>,
+    msrv: Msrv,
+) -> bool {
     if let Some((call, arg)) = skip_addr_of_ancestors(cx, expr)
         && !arg.span.from_expansion()
         && let ExprKind::Call(callee, _) = call.kind
@@ -280,12 +285,18 @@ fn check_string_from_utf8<'tcx>(cx: &LateContext<'tcx>, expr: &'tcx Expr<'tcx>, 
                     }
                 );
 
+                let from_utf8 = if msrv.meets(cx, msrvs::STR_FROM_UTF8) {
+                    "std::str::from_utf8"
+                } else {
+                    "core::str::from_utf8"
+                };
+
                 diag.multipart_suggestion(
                     "convert from `&[u8]` to `&str` directly",
                     vec![
                         // `&String::from_utf8(bytes.to_vec()).unwrap()`
                         //   ^^^^^^^^^^^^^^^^^
-                        (callee.span, "core::str::from_utf8".into()),
+                        (callee.span, from_utf8.into()),
                         // `&String::from_utf8(bytes.to_vec()).unwrap()`
                         //  ^
                         (

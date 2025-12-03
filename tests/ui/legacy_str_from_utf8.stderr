@@ -1,0 +1,114 @@
+error: importing legacy `core::str::from_utf8` function
+  --> tests/ui/legacy_str_from_utf8.rs:11:9
+   |
+LL |         from_utf8,
+   |         ^^^^^^^^^
+   |
+   = help: consider instead importing the item from `std::str::from_utf8`
+   = note: `-D clippy::legacy-str-from-utf8` implied by `-D warnings`
+   = help: to override `-D warnings` add `#[allow(clippy::legacy_str_from_utf8)]`
+
+error: importing legacy `core::str::from_utf8_mut` function
+  --> tests/ui/legacy_str_from_utf8.rs:13:9
+   |
+LL |         from_utf8_mut,
+   |         ^^^^^^^^^^^^^
+   |
+   = help: consider instead importing the item from `std::str::from_utf8_mut`
+
+error: importing legacy `core::str::from_utf8_unchecked` function
+  --> tests/ui/legacy_str_from_utf8.rs:15:9
+   |
+LL |         from_utf8_unchecked,
+   |         ^^^^^^^^^^^^^^^^^^^
+   |
+   = help: consider instead importing the item from `std::str::from_utf8_unchecked`
+
+error: importing legacy `core::str::from_utf8_unchecked_mut` function
+  --> tests/ui/legacy_str_from_utf8.rs:17:9
+   |
+LL |         from_utf8_unchecked_mut,
+   |         ^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: consider instead importing the item from `std::str::from_utf8_unchecked_mut`
+
+error: importing legacy `core::str::from_utf8` function
+  --> tests/ui/legacy_str_from_utf8.rs:38:9
+   |
+LL |     use core::str::from_utf8;
+   |         ^^^^^^^^^^^^^^^^^^^^ help: consider instead importing the item from `std`: `std::str::from_utf8`
+
+error: importing legacy `core::str::from_utf8_mut` function
+  --> tests/ui/legacy_str_from_utf8.rs:40:9
+   |
+LL |     use core::str::from_utf8_mut;
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^ help: consider instead importing the item from `std`: `std::str::from_utf8_mut`
+
+error: importing legacy `core::str::from_utf8_unchecked` function
+  --> tests/ui/legacy_str_from_utf8.rs:42:9
+   |
+LL |     use core::str::from_utf8_unchecked;
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: consider instead importing the item from `std`: `std::str::from_utf8_unchecked`
+
+error: importing legacy `core::str::from_utf8_unchecked_mut` function
+  --> tests/ui/legacy_str_from_utf8.rs:44:9
+   |
+LL |     use core::str::from_utf8_unchecked_mut;
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: consider instead importing the item from `std`: `std::str::from_utf8_unchecked_mut`
+
+error: importing legacy `core::str::from_utf8` function
+  --> tests/ui/legacy_str_from_utf8.rs:46:9
+   |
+LL |     use core::str::from_utf8 as _;
+   |         ^^^^^^^^^^^^^^^^^^^^ help: consider instead importing the item from `std`: `std::str::from_utf8`
+
+error: importing legacy `core::str::from_utf8_mut` function
+  --> tests/ui/legacy_str_from_utf8.rs:48:9
+   |
+LL |     use core::str::from_utf8_mut as _;
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^ help: consider instead importing the item from `std`: `std::str::from_utf8_mut`
+
+error: importing legacy `core::str::from_utf8_unchecked` function
+  --> tests/ui/legacy_str_from_utf8.rs:50:9
+   |
+LL |     use core::str::from_utf8_unchecked as _;
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: consider instead importing the item from `std`: `std::str::from_utf8_unchecked`
+
+error: importing legacy `core::str::from_utf8_unchecked_mut` function
+  --> tests/ui/legacy_str_from_utf8.rs:52:9
+   |
+LL |     use core::str::from_utf8_unchecked_mut as _;
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: consider instead importing the item from `std`: `std::str::from_utf8_unchecked_mut`
+
+error: usage of legacy `core::str::from_utf8` function
+  --> tests/ui/legacy_str_from_utf8.rs:111:16
+   |
+LL |     let crab = core::str::from_utf8(&[0xF0, 0x9F, 0xA6, 0x80])?;
+   |                ^^^^^^^^^^^^^^^^^^^^ help: try instead: `std::str::from_utf8`
+
+error: usage of legacy `core::str::from_utf8` function
+  --> tests/ui/legacy_str_from_utf8.rs:115:20
+   |
+LL |     let mut crab = core::str::from_utf8_mut(&mut [0xF0, 0x9F, 0xA6, 0x80])?;
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^ help: try instead: `std::str::from_utf8_mut`
+
+error: usage of legacy `core::str::from_utf8` function
+  --> tests/ui/legacy_str_from_utf8.rs:120:20
+   |
+LL |         let crab = core::str::from_utf8_unchecked(&[0xF0, 0x9F, 0xA6, 0x80]);
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: try instead: `std::str::from_utf8_unchecked`
+
+error: usage of legacy `core::str::from_utf8` function
+  --> tests/ui/legacy_str_from_utf8.rs:126:24
+   |
+LL |         let mut crab = core::str::from_utf8_unchecked_mut(&mut [0xF0, 0x9F, 0xA6, 0x80]);
+   |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: try instead: `std::str::from_utf8_unchecked_mut`
+
+error: usage of legacy `core::str::from_utf8` function
+  --> tests/ui/legacy_str_from_utf8.rs:151:16
+   |
+LL |     let crab = core::str::from_utf8(&[0xF0, 0x9F, 0xA6, 0x80])?;
+   |                ^^^^^^^^^^^^^^^^^^^^ help: try instead: `std::str::from_utf8`
+
+error: aborting due to 17 previous errors
+

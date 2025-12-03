@@ -245,6 +245,7 @@ pub static LINTS: &[&::declare_clippy_lint::LintInfo] = &[
     crate::large_stack_arrays::LARGE_STACK_ARRAYS_INFO,
     crate::large_stack_frames::LARGE_STACK_FRAMES_INFO,
     crate::legacy_numeric_constants::LEGACY_NUMERIC_CONSTANTS_INFO,
+    crate::legacy_str_from_utf8::LEGACY_STR_FROM_UTF8_INFO,
     crate::len_zero::COMPARISON_TO_EMPTY_INFO,
     crate::len_zero::LEN_WITHOUT_IS_EMPTY_INFO,
     crate::len_zero::LEN_ZERO_INFO,

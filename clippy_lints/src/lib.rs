@@ -182,6 +182,7 @@ mod large_include_file;
 mod large_stack_arrays;
 mod large_stack_frames;
 mod legacy_numeric_constants;
+mod legacy_str_from_utf8;
 mod len_zero;
 mod let_if_seq;
 mod let_underscore;
@@ -850,6 +851,7 @@ pub fn register_lint_passes(store: &mut rustc_lint::LintStore, conf: &'static Co
         Box::new(|_| Box::new(volatile_composites::VolatileComposites)),
         Box::new(|_| Box::<replace_box::ReplaceBox>::default()),
         Box::new(move |_| Box::new(manual_ilog2::ManualIlog2::new(conf))),
+        Box::new(move |_| Box::new(legacy_str_from_utf8::LegacyStrFromUtf8::new(conf))),
         // add late passes here, used by `cargo dev new_lint`
     ];
     store.late_passes.extend(late_lints);

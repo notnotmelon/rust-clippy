@@ -227,11 +227,11 @@ fn main() {
     //~^ redundant_clone
 
     let slice = [0u8; 1024];
-    let _ref_str: &str = core::str::from_utf8(&slice).expect("not UTF-8");
+    let _ref_str: &str = std::str::from_utf8(&slice).expect("not UTF-8");
     //~^ unnecessary_to_owned
-    let _ref_str: &str = core::str::from_utf8(b"foo").unwrap();
+    let _ref_str: &str = std::str::from_utf8(b"foo").unwrap();
     //~^ unnecessary_to_owned
-    let _ref_str: &str = core::str::from_utf8(b"foo".as_slice()).unwrap();
+    let _ref_str: &str = std::str::from_utf8(b"foo".as_slice()).unwrap();
     //~^ unnecessary_to_owned
     // Expression is of type `&String`, can't suggest `str::from_utf8` here
     let _ref_string = &String::from_utf8(b"foo".to_vec()).unwrap();
